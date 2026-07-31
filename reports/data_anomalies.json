@@ -1,0 +1,24 @@
+[
+  {
+    "dataset": "csi1000",
+    "type": "intraday_level_break",
+    "count": 1,
+    "at": "2020-04-20 13:01:00",
+    "magnitude_pct": 5.212565214918693,
+    "action": "exclude the complete trading date from dynamic modelling"
+  },
+  {
+    "dataset": "csi300",
+    "type": "intraday_level_break",
+    "count": 1,
+    "at": "2020-04-20 13:01:00",
+    "magnitude_pct": 2.5620256049738286,
+    "action": "exclude the complete trading date from dynamic modelling"
+  },
+  {
+    "dataset": "sse50",
+    "type": "minute_ohlc_envelope",
+    "count": 2,
+    "action": "high/low expanded to contain open and close"
+  }
+]

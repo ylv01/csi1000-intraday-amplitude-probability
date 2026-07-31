@@ -1,0 +1,7 @@
+metric,value
+primary_route_equal_q3_raw_pinball,0.06306547692609416
+route_equal_q3_sorted_pinball,0.06303646395056776
+route_equal_all9_raw_pinball,0.07885461633809356
+route_equal_all9_sorted_pinball,0.07882756327682407
+checkpoint_equal_all9_raw_pinball,0.07194450682612848
+checkpoint_equal_all9_sorted_pinball,0.0719055779983026

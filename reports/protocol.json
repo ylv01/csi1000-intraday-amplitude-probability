@@ -1,0 +1,47 @@
+{
+  "model_name": "CSI1000_V4_three_route_multi_quantile_lightgbm",
+  "data_sources": [
+    "csi1000",
+    "sse50",
+    "csi300"
+  ],
+  "target_index": "csi1000",
+  "train_period": [
+    "2019-01-01",
+    "2025-12-31"
+  ],
+  "evaluation_period": [
+    "2026-01-01",
+    "2026-07-24"
+  ],
+  "routes": {
+    "preopen": "bar_index == 0",
+    "early": "5 <= bar_index <= 60",
+    "late": "bar_index > 60"
+  },
+  "preopen_uses_current_day_open_or_gap": false,
+  "structure_selection_quantiles": [
+    0.1,
+    0.5,
+    0.9
+  ],
+  "primary_evaluation": "三个路由等权、P10/P50/P90等权的原始Pinball Loss",
+  "tree_iteration_source": "locked_multiwindow_median",
+  "early_stopping": {
+    "min_delta": 5e-05,
+    "patience_boosting_time": 3.0,
+    "initial_max_boosting_time": 30.0,
+    "absolute_max_boosting_time": 120.0,
+    "window_days": 120,
+    "window_count": 3,
+    "iteration_policy": "三个连续历史窗口最佳树数的中位数"
+  },
+  "environment": {
+    "python": "3.9.25",
+    "lightgbm": "4.6.0",
+    "numpy": "2.0.2",
+    "pandas": "2.3.3",
+    "scikit_learn": "1.6.1",
+    "joblib": "1.5.3"
+  }
+}

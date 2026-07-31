@@ -1,0 +1,133 @@
+{
+  "model_name": "CSI1000_V4_three_route_multi_quantile_lightgbm",
+  "target": "log1p(最终振幅 - 当前已实现振幅)",
+  "train_start": "2019-01-01",
+  "train_end": "2025-12-31",
+  "evaluation_start": "2026-01-01",
+  "evaluation_end": "2026-07-24",
+  "external_datasets": [
+    "sse50",
+    "csi300"
+  ],
+  "alphas": [
+    0.1,
+    0.2,
+    0.3,
+    0.4,
+    0.5,
+    0.6,
+    0.7,
+    0.8,
+    0.9
+  ],
+  "selection_alphas": [
+    0.1,
+    0.5,
+    0.9
+  ],
+  "probability_thresholds_pct": [
+    1.0,
+    1.5,
+    2.0,
+    3.0,
+    4.0
+  ],
+  "route_definitions": {
+    "preopen": "bar_index == 0",
+    "early": "5 <= bar_index <= 60",
+    "late": "bar_index > 60"
+  },
+  "route_labels": {
+    "preopen": "盘前",
+    "early": "开盘首小时",
+    "late": "首小时后"
+  },
+  "early_stopping": {
+    "min_delta": 0.00005,
+    "patience_boosting_time": 3.0,
+    "initial_max_boosting_time": 30.0,
+    "absolute_max_boosting_time": 120.0,
+    "window_days": 120,
+    "window_count": 3,
+    "iteration_policy": "三个连续历史窗口最佳树数的中位数"
+  },
+  "fixed_model_parameters": {
+    "min_split_gain": 0.01,
+    "max_bin": 63,
+    "bagging_fraction": 0.8,
+    "bagging_freq": 1,
+    "lambda_l1": 0.3,
+    "random_state": 20260727
+  },
+  "route_structures": {
+    "preopen": {
+      "learning_rate": 0.025,
+      "max_depth": 5,
+      "num_leaves": 7,
+      "min_child_ratio": 0.02,
+      "feature_fraction": 0.9,
+      "lambda_l2": 1.0
+    },
+    "early": {
+      "learning_rate": 0.01,
+      "max_depth": 4,
+      "num_leaves": 7,
+      "min_child_ratio": 0.01,
+      "feature_fraction": 0.9,
+      "lambda_l2": 3.0
+    },
+    "late": {
+      "learning_rate": 0.025,
+      "max_depth": 4,
+      "num_leaves": 12,
+      "min_child_ratio": 0.01,
+      "feature_fraction": 0.75,
+      "lambda_l2": 3.0
+    }
+  },
+  "locked_iterations": {
+    "preopen": {
+      "q10": 290,
+      "q20": 377,
+      "q30": 308,
+      "q40": 141,
+      "q50": 168,
+      "q60": 104,
+      "q70": 155,
+      "q80": 159,
+      "q90": 176
+    },
+    "early": {
+      "q10": 712,
+      "q20": 813,
+      "q30": 609,
+      "q40": 984,
+      "q50": 862,
+      "q60": 674,
+      "q70": 654,
+      "q80": 860,
+      "q90": 826
+    },
+    "late": {
+      "q10": 128,
+      "q20": 313,
+      "q30": 171,
+      "q40": 253,
+      "q50": 388,
+      "q60": 362,
+      "q70": 259,
+      "q80": 380,
+      "q90": 647
+    }
+  },
+  "evaluation": {
+    "primary": "三个路由等权、P10/P50/P90等权的原始Pinball Loss",
+    "secondary": [
+      "三个路由等权的P10至P90平均Pinball Loss",
+      "全部5分钟预测点等权的P10至P90平均Pinball Loss",
+      "P50最终振幅MAE",
+      "P10至P90区间覆盖率",
+      "分位数交叉率"
+    ]
+  }
+}

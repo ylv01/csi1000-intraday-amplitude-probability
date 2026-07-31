@@ -1,0 +1,4 @@
+dataset,label,daily_rows,minute_rows,start,end,daily_duplicates,minute_duplicates,missing_values,min_bars_per_day,max_bars_per_day,invalid_ohlc_repaired,timestamps_aligned,largest_internal_gap_pct,largest_internal_gap_at
+csi1000,中证1000,1833,439920,2019-01-02,2026-07-24,0,0,0,240,240,0,True,5.212565214918693,2020-04-20 13:01:00
+csi300,沪深300,1833,439920,2019-01-02,2026-07-24,0,0,0,240,240,0,True,2.5620256049738286,2020-04-20 13:01:00
+sse50,上证50,1833,439920,2019-01-02,2026-07-24,0,0,0,240,240,2,True,0.4203584442372243,2020-06-12 15:00:00
